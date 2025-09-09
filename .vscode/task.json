@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "process",
+            "label": "C/C++ Compile and Run",
+            "command": "g++",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-g3",
+                "c:\\Users\\91782\\Documents\\WCE\\DSA\\Array_product_except_itself.cpp",
+                "-o",
+                "c:\\Users\\91782\\Documents\\WCE\\DSA\\output\\Array_product_except_itself.exe"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
