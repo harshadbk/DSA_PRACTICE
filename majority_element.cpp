@@ -25,7 +25,7 @@ void majority_element2(vector<int>& vec){
     int freq = 1;
     int ans = vec[0];
    for(int i=1;i<n;i++){
-        if(vec[i]==vec[i-1]){         // more optimize
+        if(vec[i]==vec[i-1]){
             freq++;
         }
         else{

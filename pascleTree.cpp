@@ -19,7 +19,7 @@ vector<int> getRow(int rowIndex)
 int main()
 {
 
-    vector<int> result = getRow(3);
+    vector<int> result = getRow(4);
 
     for (int i = 0; i < result.size(); i++)
     {
