@@ -11,9 +11,9 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             int complement = target - nums[i];
             if (mp.find(complement) != mp.end()) {
-                return {mp[complement], i};
+                return {mp[complement], i+1};
             }
-            mp[nums[i]] = i;
+            mp[nums[i]] = i+1;
         }
         return {};
     }
@@ -21,15 +21,15 @@ public:
 
 int main() {
     Solution s;
-    vector<int> nums = {3, 4, 2};
+    vector<int> nums = {2,7,11,15};
     int target = 9;
 
     vector<int> result = s.twoSum(nums, target);
 
     if (!result.empty()) {
         cout << "Indices: ";
-        for(int i = 0 ; i < result.size() ; i++){
-            cout << result[i] << " ";
+        for(int x : result){
+            cout << x << " ";
         }
         cout << endl;
     } else {
