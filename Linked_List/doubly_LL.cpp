@@ -54,14 +54,18 @@ public:
         last = newnode;
     }
 
-    void insertbetween(int val,int pos){
-        node* newnode = new node(val);
-        if(pos==0){
-            if(first==nullptr){
-                first=last=newnode;
+    void insertbetween(int val, int pos)
+    {
+        node *newnode = new node(val);
+        if (pos == 0)
+        {
+            if (first == nullptr)
+            {
+                first = last = newnode;
                 return;
             }
-            else{
+            else
+            {
                 newnode->next = first;
                 first->prev = newnode;
                 first = newnode;
@@ -70,30 +74,94 @@ public:
         }
 
         int i = 0;
-        node* temp = first;
-        while (temp!=nullptr && i<pos-1)
+        node *temp = first;
+        while (temp != nullptr && i < pos - 1)
         {
             temp = temp->next;
             i++;
         }
 
-        if(temp==nullptr){
+        if (temp == nullptr)
+        {
             cout << "Invalid Position:\n";
             delete newnode;
             return;
         }
 
-        if(temp->next==nullptr){
+        if (temp->next == nullptr)
+        {
             temp->next = newnode;
             newnode->prev = temp;
             last = newnode;
         }
-        else{
+        else
+        {
             newnode->next = temp->next;
-            newnode->prev=temp;
+            newnode->prev = temp;
             temp->next->prev = newnode;
             temp->next = newnode;
         }
+    }
+
+    void pop_front()
+    {
+        if (first == nullptr)
+        {
+            cout << "List already empty";
+            return;
+        }
+
+        node *temp = first;
+        first = first->next;
+
+        if (first != nullptr)
+        {
+            first->prev = nullptr;
+        }
+        else
+        {
+            // list became empty
+            last = nullptr;
+        }
+
+        delete temp;
+    }
+
+    void pop_back()
+    {
+        if (first == nullptr)
+        {
+            cout << "List already empty:";
+            return;
+        }
+
+        node *temp = first;
+
+        while (temp->next != nullptr)
+        {
+            temp = temp->next;
+        }
+
+        temp->prev->next = nullptr;
+        temp->prev = temp->prev->prev;
+        last = temp->prev;
+        free(temp);
+    }
+
+    void pop_pos(int pos){
+        if(pos==0){
+            if(first==nullptr){
+                cout << "List is already Empty:";
+                return;
+            }
+            node* temp = first;
+            first = first->next;
+            first->prev = nullptr;
+            temp->next = nullptr;
+            free(temp);
+        }
+
+        
     }
 
     void printlist()
@@ -115,10 +183,16 @@ int main()
     l.push_front(11);
     l.push_front(23);
     l.push_back(45);
-    l.insertbetween(29,0);
-    l.insertbetween(9,7);
-    l.insertbetween(56,2);
-    l.insertbetween(71,6);
+    l.insertbetween(29, 0);
+    l.insertbetween(9, 7);
+    l.insertbetween(56, 2);
+    l.insertbetween(71, 6);
+    l.printlist();
+    l.pop_front();
+    l.printlist();
+    l.pop_back();
+    l.printlist();
+    l.pop_pos(0);
     l.printlist();
     return 0;
 }
