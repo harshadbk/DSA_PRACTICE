@@ -39,12 +39,21 @@ public:
         tail->next = head;
     }
 
-    void push_back(int val){
-        node* newnode = new node(val);
+    void push_back(int val)
+    {
+        node *newnode = new node(val);
 
-        if(head==nullptr){
+        if (head == nullptr)
+        {
             head = tail = newnode;
             tail->next = head;
+            return;
+        }
+
+        if (head->next == tail)
+        {
+            delete head;
+            head = nullptr;
             return;
         }
 
@@ -53,16 +62,77 @@ public:
         tail = newnode;
     }
 
-    void pop_front(){
-        if(head==nullptr){
+    void pop_front()
+    {
+        if (head == nullptr)
+        {
             cout << "List already Empty ..\n";
             return;
         }
 
-        node* temp = head;
+        if (head == tail)
+        {
+            delete head;
+            head = tail = nullptr;
+            return;
+        }
+
+        node *temp = head;
         head = head->next;
         tail->next = head;
         free(temp);
+    }
+
+    void pop_back()
+    {
+        if (head == nullptr)
+        {
+            cout << "List already Empty ..\n";
+            return;
+        }
+
+        if (head->next == tail)
+        {
+            delete head;
+            head = nullptr;
+            return;
+        }
+
+        node *temp = head;
+        while (temp->next->next != head)
+        {
+            temp = temp->next;
+        }
+        node *last = temp->next;
+        temp->next = head;
+        delete last;
+    }
+
+    void pop_pos(int pos)
+    {
+        if (pos == 0)
+        {
+            pop_front();
+            return;
+        }
+
+        int i = 0;
+        node *temp = head;
+
+        while (i != pos - 1)
+        {
+            temp = temp->next;
+            i++;
+        }
+
+        if (temp->next == tail)
+        {
+            pop_back();
+        }
+
+        node *del = temp->next;
+        temp->next = del->next;
+        free(del);
     }
 
     void printdata()
@@ -96,6 +166,14 @@ int main()
     l.push_back(30);
     l.printdata();
     l.pop_front();
+    l.printdata();
+    l.pop_back();
+    l.printdata();
+    l.pop_pos(2);
+    l.printdata();
+    l.pop_pos(2);
+    l.printdata();
+    l.pop_pos(0);
     l.printdata();
     return 0;
 }
