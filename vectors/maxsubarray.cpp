@@ -4,7 +4,6 @@ using namespace std;
 
 void maxsubarray(vector<int> &nums){
     int maxsum = INT16_MIN;
-
     for(int i=0;i<nums.size();i++){
         int currsum = 0;
         for(int j=i;j<nums.size();j++){

@@ -1,16 +1,17 @@
 #include <iostream>
 using namespace std;
 
-void printnum(int n){
-   if(n==1){
-    cout << "1 "<<endl;
+void printnum(int n,int i){
+   if(i==n){
+    cout << n <<endl;
     return;
    }
-   cout << n << " ";
-   printnum(n-1);
+   cout << i;
+   i++;
+   printnum(n,i);
 }
 
 int main(){
-    printnum(4);
+    printnum(4,0);
     return 0;
 }

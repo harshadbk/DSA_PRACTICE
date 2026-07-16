@@ -174,6 +174,23 @@ public:
         }
         cout << "NULL" << endl;
     }
+
+    node* reverselist(){
+        if(first==nullptr && first->next == nullptr) return first;
+        node* curr = first;
+
+        while(curr != nullptr){
+            node* temp = curr->next;
+            curr->next = curr->prev;
+            curr->prev = temp;
+
+            first = curr;
+            curr = temp;
+        }
+
+        return first;
+
+    }
 };
 
 int main()
@@ -188,11 +205,21 @@ int main()
     l.insertbetween(56, 2);
     l.insertbetween(71, 6);
     l.printlist();
-    l.pop_front();
+    // l.pop_front();
     l.printlist();
-    l.pop_back();
+    // l.pop_back();
     l.printlist();
-    l.pop_pos(0);
+    // l.pop_pos(0);
     l.printlist();
+    node* first = l.reverselist();
+
+    node *ptr = first;
+        while (ptr != nullptr)
+        {
+            cout << ptr->no << " -> ";
+            ptr = ptr->next;
+        }
+        cout << "NULL" << endl;
+    
     return 0;
 }
