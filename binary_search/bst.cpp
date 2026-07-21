@@ -39,7 +39,7 @@ void traverse(ListNode* root){
 }
 
 int main() {
-    vector<int> nums{3,5,1,8,7,6,90,12};
+    vector<int> nums{3,5,1,8,7,11,2,6,90,12};
     sort(nums.begin(),nums.end());
     int l = 0;
     int r = nums.size()-1;
