@@ -11,25 +11,28 @@ class stack {
 
     int push(int x){
         if(top >= 4){
-            cout << "Stack Overflow Cant add element";
+            cout << "Stack Overflow Cant add element\n";
             return 0;
         }
         top++;
         arr[top] = x;
+        return 0;
     }
 
     int pop(){
         if(top==-1){
-            cout << "Stack Underflow Cant remove element";
+            cout << "Stack Underflow Cant remove element\n";
             return 0;
         }
         top--;
+        return 0;
     }
 
     int get_top(){
         if(top != -1){
             return arr[top];
         }
+        return 0;
     }
 
     int size(){
