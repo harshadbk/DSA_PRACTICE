@@ -40,23 +40,10 @@ void pop(){
         return;
     }
     else{
-        if(b.size()==0){
-            while(a.size() != 1){
-                b.push(a.top());
-                a.pop();
-            }
-        }
-        int ele = a.top();
+        int top = a.top();
         a.pop();
         size--;
-        cout << "Popped element " << ele << endl;
-
-        if(a.empty()){
-            while(!b.empty()){
-                a.push(b.top());
-                b.pop();
-            }
-        }
+        cout << "Deleted value "<<top<<endl;
     }
 }
 
