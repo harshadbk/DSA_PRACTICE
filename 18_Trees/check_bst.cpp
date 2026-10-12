@@ -66,20 +66,42 @@ int sum = 0;
 
 void ksum(node *tree, int &k)
 {
-    if (tree == nullptr || k<=0)
+    if (tree == nullptr || k <= 0)
     {
         return;
     }
     ksum(tree->left, k);
     k--;
-    if(k>=0){
+    if (k >= 0)
+    {
         sum += tree->data;
     }
-    else {
+    else
+    {
         return;
     }
 
-    ksum(tree->right,k);
+    ksum(tree->right, k);
+}
+
+bool searchbst(node *root, int &val)
+{
+    if (root == nullptr)
+    {
+        return false;
+    }
+    if (root->data == val)
+    {
+        return true;
+    }
+    else if (root->data < val)
+    {
+        return searchbst(root->right, val);
+    }
+    else
+    {
+        return searchbst(root->left, val);
+    }
 }
 
 int main()
@@ -104,22 +126,26 @@ int main()
 
     cout << checkbst(root) << endl;
 
-    // for(int i=1;i<ans.size();i++){
-    //     if(ans[i] < ans[i-1]){
-    //         cout << "0";
-    //         return 0;
-    //     }
-    // }
+    for (int i = 1; i < ans.size(); i++)
+    {
+        if (ans[i] < ans[i - 1])
+        {
+            cout << "0";
+            return 0;
+        }
+    }
 
-    // cout << "1";
+    cout << "1";
 
     mindist(root);
 
     cout << minlen << endl;
     int k = 8;
-    ksum(root,k);
+    ksum(root, k);
 
     cout << "sum is " << sum << endl;
+    int val = 41;
+    cout << searchbst(root, val);
 
     return 0;
 }
