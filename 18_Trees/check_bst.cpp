@@ -104,6 +104,20 @@ bool searchbst(node *root, int &val)
     }
 }
 
+bool validbst(node* root,node* min,node* max){
+    if(root==nullptr){
+        return true;
+    }
+    if(min != nullptr && root->data <= min->data){
+        return false;
+    }
+    else if(max != nullptr && root->data >= max->data){
+        return false;
+    }
+
+    return validbst(root->left,min,root) && validbst(root->right,root,max); 
+}
+
 int main()
 {
     node *root = new node(12);
@@ -145,7 +159,9 @@ int main()
 
     cout << "sum is " << sum << endl;
     int val = 41;
-    cout << searchbst(root, val);
+    cout << searchbst(root, val) << endl;
+
+    cout << validbst(root,nullptr,nullptr);
 
     return 0;
 }
