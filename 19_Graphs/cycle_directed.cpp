@@ -71,6 +71,40 @@ public:
         }
         return false;
     }
+
+    bool hascycle2(int curr,vector<bool>& vis,vector<bool> &recp){
+        vis[curr]=true;
+        recp[curr]=true;
+
+        for(int v : l[curr]){
+            if(!vis[v]){
+                if(hascycle2(v,vis,recp)){
+                    return true;
+                }
+            }
+            else if(recp[v]){
+                return true;
+            }
+        }
+
+        vis[curr] = false;
+        return false;
+    }
+
+    bool forall2(){
+        vector<bool> vis (V,false);
+        vector<bool> recp (V,false);
+
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                if(hascycle2(i,vis,recp)){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 };
 
 int main()
@@ -85,7 +119,7 @@ int main()
     vector<bool> visited(5, false);
     g.bfs(0, visited);
     cout << endl ;
-    cout << g.detect();
+    cout << g.forall2();
 
     return 0;
 }
